@@ -1,0 +1,30 @@
+{
+  "name": "fronsite",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukasaragao/fronsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukasaragao/fronsite/issues"
+  },
+  "homepage": "https://github.com/lukasaragao/fronsite#readme",
+  "description": "",
+  "dependencies": {
+    "next": "^15.4.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.0.14",
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3"
+  }
+}
