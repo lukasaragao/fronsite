@@ -12,29 +12,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
+        // Configuração para Gmail (mais simples)
         const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST,
-            port: Number(process.env.SMTP_PORT || 587),
-            secure: false,
+            service: 'gmail',
             auth: {
-                user: process.env.SMTP_USER,
-                pass: process.env.SMTP_PASS,
+                user: process.env.GMAIL_USER || 'lukasbilac@hotmail.com',
+                pass: process.env.GMAIL_APP_PASSWORD, // Use App Password do Gmail
             },
         })
 
-        const to = process.env.CONTACT_TO || process.env.SMTP_USER
+        // Email de destino fixo
+        const to = 'lukasbilac@hotmail.com'
 
         await transporter.sendMail({
-            from: `Website <${process.env.SMTP_USER}>`,
+            from: `Website Fronsite <${process.env.GMAIL_USER || 'lukasbilac@hotmail.com'}>`,
             to,
             replyTo: email,
-            subject: `Novo contato de ${nome}`,
-            text: `${mensagem}\n\nContato: ${nome} <${email}>`,
+            subject: `Novo contato do site - ${nome}`,
+            html: `
+                <h3>Novo contato recebido</h3>
+                <p><strong>Nome:</strong> ${nome}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Mensagem:</strong></p>
+                <p>${mensagem.replace(/\n/g, '<br>')}</p>
+            `,
+            text: `Novo contato de ${nome} (${email}):\n\n${mensagem}`,
         })
 
         return res.status(200).json({ ok: true })
     } catch (err) {
-        return res.status(500).json({ ok: false, error: 'Falha ao enviar e-mail' })
+        return res.status(500).json({ ok: false, error: 'Falha ao enviar e-mail. Verifique as configurações.' })
     }
 }
 

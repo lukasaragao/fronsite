@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ReactNode } from 'react'
+import Image from 'next/image'
 
 type LayoutProps = { children: ReactNode }
 
@@ -9,8 +10,8 @@ export default function Layout({ children }: LayoutProps) {
             <header className="site-header">
                 <div className="container nav">
                     <div className="brand">
-                        <div className="logo" aria-hidden />
-                        <span>Fronsite</span>
+                        <Image src="/logo.png" alt="Fronsite" width={60} height={60} />
+                        <Image src="/nome.png" alt="Fronsite" width={120} height={30} />
                     </div>
                     <nav className="nav-menu" aria-label="Principal">
                         <Link href="/">Início</Link>
