@@ -2,6 +2,11 @@ import Layout from '../components/Layout'
 import FormularioContato from '../components/FormularioContato'
 
 export default function Home(){
+
+    const handleProposta = (servico: string) => {
+        sessionStorage.setItem('servicoSelecionado', servico);
+    }
+    
     return(
         <Layout>
             <section className="hero">
@@ -73,21 +78,21 @@ export default function Home(){
                         <p>
                         Uma landing page, ou página de captura, é projetada com um objetivo específico de converter visitantes em leads ou clientes. É uma página única, direta e focada, usada em campanhas de marketing para promover um produto, serviço, eventos, aumentar conversão ou ação específica.
                         </p>
-                        <a className="btn" style={{marginTop:18}} href="/#contato">Solicitar proposta</a>
+                        <a className="btn" style={{marginTop:18}} href="/#contato" onClick={() => handleProposta('landing-page')}>Solicitar proposta</a>
                     </div>
                     <div className="card">
                         <h3 style={{marginTop:0, fontSize: '1.5rem', fontWeight: 'bold'}}>Website</h3>
                         <p>
                         Um website é o cartão de visitas digital da sua empresa. Ele reúne informações essenciais sobre seu negócio, como serviços, produtos, história, valores e formas de contato. Um site bem projetado é a base para fortalecer sua presença online, oferecendo uma experiência completa ao visitante.
                         </p>
-                        <a className="btn" href="/#contato">Solicitar proposta</a>
+                        <a className="btn" href="/#contato" onClick={() => handleProposta('website')}>Solicitar proposta</a>
                     </div>
                     <div className="card">
                         <h3 style={{marginTop:0, fontSize: '1.5rem', fontWeight: 'bold'}}>E-commerce</h3>
                         <p>
                         O e-commerce é uma loja virtual que permite a venda de produtos ou serviços pela internet. Ele oferece uma experiência completa de compra online. Permite alcançar clientes em qualquer lugar, oferecendo conveniência e praticidade para os consumidores.
                         </p>
-                        <a className="btn" style={{marginTop:18}} href="/#contato">Solicitar proposta</a>
+                        <a className="btn" style={{marginTop:18}} href="/#contato" onClick={() => handleProposta('ecommerce')}>Solicitar proposta</a>
                     </div>
                 </div>
             </section>

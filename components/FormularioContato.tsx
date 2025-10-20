@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 
 const FormularioContato = () => {
@@ -9,6 +9,24 @@ const FormularioContato = () => {
 
   const numeroWhatsApp = '5543999035955';
   const emailDestino = 'lukasbilac@hotmail.com';
+
+  // Mensagens personalizadas para cada serviço
+  const mensagensPersonalizadas = {
+    'landing-page': 'Olá! Gostaria de solicitar uma proposta para desenvolvimento de uma Landing Page. Preciso de uma página focada em conversão para minha campanha de marketing. Podem me enviar mais detalhes sobre o processo?',
+    'website': 'Olá! Tenho interesse em desenvolver um Website completo para minha empresa. Preciso de um site profissional que represente bem meu negócio online. Gostaria de receber uma proposta detalhada.',
+    'ecommerce': 'Olá! Estou interessado em criar uma loja virtual (E-commerce) para vender meus produtos online. Preciso de uma solução completa de vendas digitais. Podem me enviar informações sobre o projeto?'
+  };
+
+  // Effect para preencher mensagem baseada no serviço selecionado
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const servico = sessionStorage.getItem('servicoSelecionado');
+      if (servico && mensagensPersonalizadas[servico as keyof typeof mensagensPersonalizadas]) {
+        setMensagem(mensagensPersonalizadas[servico as keyof typeof mensagensPersonalizadas]);
+        sessionStorage.removeItem('servicoSelecionado'); // Limpa após usar
+      }
+    }
+  }, []);
 
   const validarCampos = () => {
     if (!nome || !email || !mensagem) {
@@ -38,6 +56,29 @@ const FormularioContato = () => {
     window.location.href = mailtoLink;
   };
 
+  // Effect adicional para monitorar mudanças no sessionStorage
+  useEffect(() => {
+    const checkForService = () => {
+      if (typeof window !== 'undefined') {
+        const servico = sessionStorage.getItem('servicoSelecionado');
+        if (servico && mensagensPersonalizadas[servico as keyof typeof mensagensPersonalizadas]) {
+          setMensagem(mensagensPersonalizadas[servico as keyof typeof mensagensPersonalizadas]);
+          sessionStorage.removeItem('servicoSelecionado');
+        }
+      }
+    };
+
+    // Verifica imediatamente se há um serviço salvo
+    checkForService();
+
+    // Monitora mudanças no sessionStorage a cada 100ms
+    const interval = setInterval(checkForService, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+  
   return (
     <form className="contact" noValidate>
       <label>
