@@ -1,5 +1,5 @@
 import Layout from '../components/Layout'
-import ContactForm from '../components/ContactForm'
+import FormularioContato from '../components/FormularioContato'
 
 export default function Home(){
     return(
@@ -16,22 +16,23 @@ export default function Home(){
                     </div>
                     <div className="card">
                         <h3 style={{marginTop:0}}>Nossos Números</h3>
-                        <div style={{height:200, display:'grid', gridTemplateColumns:'repeat(6,1fr)', alignItems:'end', gap:10}} aria-label="Indicadores de performance">
+                        <div style={{height:'auto', display:'grid', gridTemplateColumns:'repeat(6,1fr)', alignItems:'end', gap:1}} aria-label="Indicadores de performance">
                             { [
-                                { value: 70, label: "100+", desc: "Clientes Atendidos" },
-                                { value: 100, label: "2.000h", desc: "Programação" },
-                                { value: 60, label: "30+", desc: "Projetos Entregues" },
-                                { value: 70, label: "95%", desc: "Satisfação" },
-                                { value: 62, label: "24h", desc: "Suporte" },
-                                { value: 88, label: "100%", desc: "Responsivo" }
+                                { value: 80, label: "8.000h+", desc: "Horas de programação" },
+                                { value: 50, label: "2.000h+", desc: "Horas de estudo" },
+                                { value: 100, label: "100%", desc: "Projetos Entregues no prazo" },
+                                { value: 100, label: "100%", desc: "Suporte e otimizações" },
+                                { value: 60, label: "5+", desc: "Frameworks dominados" },
+                                { value: 100, label: "100%", desc: "Responsivo" }
                             ].map((item,i) => (
-                                <div key={i} style={{display:'flex', flexDirection:'column', alignItems:'center', height:'100%'}}>
+                                <div key={i} style={{display:'flex', flexDirection:'column', alignItems:'center', height:'100%', justifyContent:'end'}}>
+                                    <div style={{marginBottom:8, fontSize:'10px', color:'var(--color-muted)', textAlign:'center', lineHeight:'1.2'}}>
+                                        {item.desc}
+                                    </div>
                                     <div style={{
                                         height: item.value*1.8, 
                                         width:'80%',
-                                        background: item.value >= 70 ? 'linear-gradient(180deg, #4ade80, #22c55e)' : 
-                                                   item.value >= 40 ? 'linear-gradient(180deg, #fbbf24, #f59e0b)' : 
-                                                   'linear-gradient(180deg, #ef4444, #dc2626)',
+                                        background: 'linear-gradient(180deg,rgb(30, 43, 228),rgb(126, 72, 228))',
                                         borderRadius:8,
                                         display:'flex',
                                         alignItems:'center',
@@ -43,9 +44,6 @@ export default function Home(){
                                         boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                                     }}>
                                         {item.label}
-                                    </div>
-                                    <div style={{marginTop:8, fontSize:'10px', color:'var(--color-muted)', textAlign:'center', lineHeight:'1.2'}}>
-                                        {item.desc}
                                     </div>
                                 </div>
                             )) }
@@ -78,7 +76,7 @@ export default function Home(){
 
             <section id="contato">
                 <h2 className="section-title">Fale conosco e transforme seu negócio</h2>
-                <ContactForm />
+                <FormularioContato />
             </section>
         </Layout>
     )

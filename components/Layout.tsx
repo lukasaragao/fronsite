@@ -16,7 +16,7 @@ export default function Layout({ children }: LayoutProps) {
                     <nav className="nav-menu" aria-label="Principal">
                         <Link href="/">Início</Link>
                         <Link href="/servicos">Serviços</Link>
-                        <a href="#contato">Contato</a>
+                        <a href="/#contato">Contato</a>
                     </nav>
                 </div>
             </header>
